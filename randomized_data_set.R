@@ -17,4 +17,4 @@ modified_data_set <- original_data_set %>%
   )
 
 # Optionally, save the modified dataset
-write.csv(modified_data_set, "./modified_data_set.csv", row.names = FALSE)
+write.csv(modified_data_set, "./data/modified_data_set.csv", row.names = FALSE)

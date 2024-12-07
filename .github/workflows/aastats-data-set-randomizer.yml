@@ -43,7 +43,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: modified-data
-          path: modified_data_set.csv
+          path: data/modified_data_set.csv
           
       # - name: Configure Git
       #   run: |
