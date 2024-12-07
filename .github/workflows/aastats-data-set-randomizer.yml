@@ -55,7 +55,7 @@ jobs:
 
       - name: Commit Changes
         run: |
-          git add data/modified_data_set.csv
+          git add data/
           git commit -m "Add new analysis report for latest XLSX File"
           git push
         env:
