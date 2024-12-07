@@ -38,6 +38,9 @@ jobs:
       - name: Run randomize columns R script
         run: |
           Rscript randomized_data_set.R
+          
+      - name: List contents of the data directory
+        run: ls data          
   
       - name: Upload modified dataset
         uses: actions/upload-artifact@v4
