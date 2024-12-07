@@ -48,15 +48,15 @@ jobs:
           name: modified-data
           path: data/modified_data_set.csv
           
-      # - name: Configure Git
-      #   run: |
-      #     git config --global user.name 'github-actions'
-      #     git config --global user.email 'github-actions@github.com'
-      # 
-      # - name: Commit Changes
-      #   run: |
-      #     git add modified_data_set.csv
-      #     git commit -m "Add new analysis report for latest XLSX File"
-      #     git push
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}          
+      - name: Configure Git
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+
+      - name: Commit Changes
+        run: |
+          git add modified_data_set.csv
+          git commit -m "Add new analysis report for latest XLSX File"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
