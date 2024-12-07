@@ -12,7 +12,7 @@ modified_data_set <- original_data_set %>%
   mutate(
     satisfaction_level = satisfaction_level + 0.03,
     last_evaluation = last_evaluation - 0.02,
-    left = sample(c(0, 1), size = n(), replace = TRUE, prob = c(0.3, 0.8)),
+    left = sample(c(0, 1), size = n(), replace = TRUE, prob = c(0.3, 0.7)),
     Work_accident = sample(c(0, 1), size = n(), replace = TRUE, prob = c(0.7, 0.4))
   )
 
