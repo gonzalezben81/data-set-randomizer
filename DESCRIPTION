@@ -1,0 +1,9 @@
+Package: DataSetRandomizer
+Title: Data set randomizer workflow
+Version: 0.1.0
+Authors@R: person("Your", "Name", email = "you@example.com", role = c("aut", "cre"))
+Description: Data set randomizer workflow
+License: MIT
+Imports:
+  dplyr,
+  readxl
