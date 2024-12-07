@@ -33,7 +33,7 @@ jobs:
           cache-version: 2
           extra-packages: |
             any::dplyr
-            anY::readxl
+            any::readxl
 
       - name: Run randomize columns R script
         run: |
