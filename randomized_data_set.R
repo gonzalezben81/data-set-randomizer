@@ -12,9 +12,9 @@ modified_data_set <- original_data_set %>%
   mutate(
     satisfaction_level = satisfaction_level + 0.03,
     last_evaluation = last_evaluation - 0.02,
-    left = sample(c(0, 1), size = n(), replace = TRUE, prob = c(0.2, 0.8)),
-    Work_accident = sample(c(0, 1), size = n(), replace = TRUE, prob = c(0.7, 0.3))
+    left = sample(c(0, 1), size = n(), replace = TRUE, prob = c(0.3, 0.8)),
+    Work_accident = sample(c(0, 1), size = n(), replace = TRUE, prob = c(0.7, 0.4))
   )
 
 # Optionally, save the modified dataset
-write.csv(modified_data_set, "./modified_data_set.csv", row.names = FALSE)
+write.csv(modified_data_set, "./modified_data_set-v2.csv", row.names = FALSE)
