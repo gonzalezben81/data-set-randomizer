@@ -19,6 +19,10 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v4
         
+      - name: Get current commit hash
+        id: get_hash
+        run: echo "commit_hash=$(git rev-parse HEAD)" >> $GITHUB_ENV        
+        
       - name: List contents of the data directory
         run: ls
         
@@ -37,7 +41,7 @@ jobs:
 
       - name: Run randomize columns R script
         run: |
-          Rscript randomized_data_set.R
+          Rscript randomized_data_set.R ${{ env.commit_hash }}
           
       - name: List contents of the data directory
         run: ls data          

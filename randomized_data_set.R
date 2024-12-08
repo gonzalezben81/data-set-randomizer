@@ -1,6 +1,14 @@
 # Set the seed for reproducibility
 # set.seed(123)
 
+# Capture command-line arguments
+args <- commandArgs(trailingOnly = TRUE)
+commit_hash <- args[1]
+
+# Print the commit hash for confirmation
+cat("Using commit hash:", commit_hash, "\n")
+
+
 # Load the necessary library
 library(dplyr)
 library(readxl)
@@ -16,5 +24,5 @@ modified_data_set <- original_data_set %>%
     Work_accident = sample(c(0, 1), size = n(), replace = TRUE, prob = c(0.7, 0.4))
   )
 
-# Optionally, save the modified dataset
-write.csv(modified_data_set, paste0("./data/modified_data_set",rnorm(1),".csv"), row.names = FALSE)
+# Save the modified dataset
+write.csv(modified_data_set, paste0("./data/modified_data_set",commit_hash,".csv"), row.names = FALSE)
