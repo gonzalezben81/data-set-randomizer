@@ -25,4 +25,4 @@ modified_data_set <- original_data_set %>%
   )
 
 # Save the modified dataset
-write.csv(modified_data_set, paste0("./data/modified_data_set",commit_hash,".csv"), row.names = FALSE)
+write.csv(modified_data_set, paste0("./data/modified_data_set_",commit_hash,".csv"), row.names = FALSE)
