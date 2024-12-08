@@ -4,6 +4,12 @@
 # Capture command-line arguments
 args <- commandArgs(trailingOnly = TRUE)
 commit_hash <- args[1]
+left_prob_0 <- as.numeric(args[2])
+left_prob_1 <- as.numeric(args[3])
+work_accident_prob_0 <- as.numeric(args[4])
+work_accident_prob_1 <- as.numeric(args[5])
+sat_level<- as.numeric(args[6])
+eval_level<- as.numeric(args[7])
 
 # Print the commit hash for confirmation
 cat("Using commit hash:", commit_hash, "\n")
@@ -18,10 +24,10 @@ original_data_set<- readxl::read_excel(path = "./HumanResourcesDataAA5221_Reduce
 # Randomize specified columns in the dataset
 modified_data_set <- original_data_set %>%
   mutate(
-    satisfaction_level = satisfaction_level + 0.03,
-    last_evaluation = last_evaluation - 0.02,
-    left = sample(c(0, 1), size = n(), replace = TRUE, prob = c(0.3, 0.7)),
-    Work_accident = sample(c(0, 1), size = n(), replace = TRUE, prob = c(0.7, 0.4))
+    satisfaction_level = satisfaction_level + sat_level,
+    last_evaluation = last_evaluation - eval_level,
+    left = sample(c(0, 1), size = n(), replace = TRUE, prob = c(left_prob_0, left_prob_1)),
+    Work_accident = sample(c(0, 1), size = n(), replace = TRUE, prob = c(work_accident_prob_0, work_accident_prob_1))
   )
 
 # Save the modified dataset
