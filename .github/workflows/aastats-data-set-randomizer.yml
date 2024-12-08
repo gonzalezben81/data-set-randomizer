@@ -21,7 +21,7 @@ jobs:
         
       - name: Get current commit hash
         id: get_hash
-        run: echo "commit_hash=$(git rev-parse --short=4 HEAD)" >> $GITHUB_ENV        
+        run: echo "commit_hash=$(git rev-parse --short=7 HEAD)" >> $GITHUB_ENV        
         
       - name: List contents of the data directory
         run: ls
