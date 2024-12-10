@@ -19,7 +19,7 @@ cat("Using commit hash:", commit_hash, "\n")
 library(dplyr)
 library(readxl)
 
-original_data_set<- readxl::read_excel(path = "./HumanResourcesDataAA5221_Reduced_Fall2.xlsx",sheet = 1)
+original_data_set<- readxl::read_excel(path = "./data_set.xlsx",sheet = 1)
 
 # Randomize specified columns in the dataset
 modified_data_set <- original_data_set %>%
