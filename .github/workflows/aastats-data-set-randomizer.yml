@@ -92,7 +92,7 @@ jobs:
         id: secrets
         uses: hashicorp/vault-action@v2.4.0
         with:
-          url: https://rgonzovault.us:8200
+          url: ${{ secrets.VAULT_URL }}
           role: github-actions-role
           method: jwt
           path: gh-actions
