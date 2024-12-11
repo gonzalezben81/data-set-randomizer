@@ -33,50 +33,50 @@ jobs:
 
         
          ###Get the current commit hash
-       - name: Get current commit hash
-         id: get_hash
-         run: echo "commit_hash=$(git rev-parse --short=7 HEAD)" >> $GITHUB_ENV
-         ###List the contents of the data directory
-       - name: List contents of the data directory
-         run: ls
-         ###Set up R
-       - name: Set up R
-         uses: r-lib/actions/setup-r@v2
-      
-         ###Install the necessary R library dependencies
-       - name: Install Dependencies
-         uses: r-lib/actions/setup-r-dependencies@v2
-         with:
-           cache-version: 2
-           extra-packages: |
-             any::dplyr
-             any::readxl
-      
-       - name: Run randomize columns R script
-         run: |
-           Rscript randomized_data_set.R ${{ env.commit_hash }} \
-           $LEFT_PROB_0 $LEFT_PROB_1 \
-           $WORK_ACCIDENT_PROB_0 $WORK_ACCIDENT_PROB_1 \
-           $SAT_LEVEL $EVAL_LEVEL
-      
-       - name: List contents of the data directory
-         run: ls data
-         
-       - name: Upload modified dataset
-         uses: actions/upload-artifact@v4
-         with:
-           name: modified-data
-           path: data/
-      
-       - name: Configure Git
-         run: |
-           git config --global user.name 'github-actions'
-           git config --global user.email 'github-actions@github.com'
-      
-       - name: Commit Changes
-         run: |
-           git add data/
-           git commit -m "Add new analysis report for latest XLSX File"
-           git push
-         env:
-           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Get current commit hash
+        id: get_hash
+        run: echo "commit_hash=$(git rev-parse --short=7 HEAD)" >> $GITHUB_ENV
+        ###List the contents of the data directory
+      - name: List contents of the data directory
+        run: ls
+        ###Set up R
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+    
+        ###Install the necessary R library dependencies
+      - name: Install Dependencies
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          cache-version: 2
+          extra-packages: |
+            any::dplyr
+            any::readxl
+    
+      - name: Run randomize columns R script
+        run: |
+          Rscript randomized_data_set.R ${{ env.commit_hash }} \
+          $LEFT_PROB_0 $LEFT_PROB_1 \
+          $WORK_ACCIDENT_PROB_0 $WORK_ACCIDENT_PROB_1 \
+          $SAT_LEVEL $EVAL_LEVEL
+    
+      - name: List contents of the data directory
+        run: ls data
+        
+      - name: Upload modified dataset
+        uses: actions/upload-artifact@v4
+        with:
+          name: modified-data
+          path: data/
+    
+      - name: Configure Git
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+    
+      - name: Commit Changes
+        run: |
+          git add data/
+          git commit -m "Add new analysis report for latest XLSX File"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }
