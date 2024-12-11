@@ -92,7 +92,7 @@ jobs:
         id: secrets
         uses: hashicorp/vault-action@v2.4.0
         with:
-          url: ${{ secrets.URL }}
+          url: ${{ secrets.VAULT_URL }}
           role: gh-demo
           method: jwt
           path: gh-actions
