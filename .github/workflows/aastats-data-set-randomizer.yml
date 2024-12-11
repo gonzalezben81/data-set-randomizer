@@ -30,6 +30,51 @@ jobs:
     steps:
       - name: Check out the repository
         uses: actions/checkout@v4
+        
+        
+name: Vault Authentication Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  authenticate-and-retrieve-secrets:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Vault environment variables
+        run: |
+          echo "VAULT_ADDR=https://rgonzovault.us:8200" >> $GITHUB_ENV
+          echo "VAULT_ROLE=github-actions-role" >> $GITHUB_ENV
+          echo "JWT_AUDIENCE=sigstore" >> $GITHUB_ENV
+
+      - name: Authenticate with Vault using JWT
+        uses: hashicorp/vault-action@v2
+        with:
+          url: ${{ env.VAULT_ADDR }}
+          caCertificate: ${{ secrets.VAULT_CA_CERT }}
+          role: ${{ env.VAULT_ROLE }}
+          method: jwt
+          jwtGithubAudience: ${{ env.JWT_AUDIENCE }}
+        env:
+          VAULT_TOKEN: ${{ secrets.VAULT_TOKEN }}
+
+      - name: Retrieve secret from Vault
+        run: |
+          secret=$(vault kv get -field=value secret/my-secret)
+          echo "Retrieved secret: $secret"
+
+      - name: Use the secret in subsequent steps
+        run: |
+          echo "Use the retrieved secret in your action"
+          # Example: use the secret for deployment or other tasks
+          # Further actions can be added here
+        
       #   ###Get the current commit hash
       # - name: Get current commit hash
       #   id: get_hash
@@ -81,18 +126,20 @@ jobs:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
           
-      - name: Print GitHub JWT token
-        env:
-          ACTIONS_ID_TOKEN_REQUEST_TOKEN: ${{ secrets.ACTIONS_ID_TOKEN_REQUEST_TOKEN }}
-        run: echo "JWT Token: $ACTIONS_ID_TOKEN_REQUEST_TOKEN"
-          
-      - name: Get Secrets
-        id: secrets
-        uses: hashicorp/vault-action@v2
-        with:
-          url: ${{ secrets.VAULT_URL }}
-          role: github-actions-role
-          method: jwt
-          tlsSkipVerify: false
-          secrets: |
-            secret/data/gh-demo demo_secret  
+      # - name: Print GitHub JWT token
+      #   env:
+      #     ACTIONS_ID_TOKEN_REQUEST_TOKEN: ${{ secrets.ACTIONS_ID_TOKEN_REQUEST_TOKEN }}
+      #   run: echo "JWT Token: $ACTIONS_ID_TOKEN_REQUEST_TOKEN"
+      #     
+      # - name: Get Secrets
+      #   id: secrets
+      #   uses: hashicorp/vault-action@v2
+      #   with:
+      #     url: ${{ secrets.VAULT_URL }}
+      #     role: github-actions-role
+      #     method: jwt
+      #     tlsSkipVerify: false
+      #     secrets: |
+      #       secret/data/gh-demo demo_secret  
+      
+      
