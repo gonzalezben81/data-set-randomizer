@@ -82,7 +82,7 @@ jobs:
           
       - name: Get Secrets
         id: secrets
-        uses: hashicorp/vault-action@v2.4.0
+        uses: hashicorp/vault-action@v2
         with:
           url: ${{ secrets.VAULT_URL }}
           role: github-actions-role
