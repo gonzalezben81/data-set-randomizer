@@ -80,17 +80,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
-      # ###Vault interaction
-      # - name: Import Secrets
-      #   uses: hashicorp/vault-action@v2
-      #   with:
-      #     url: ${{ secrets.URL }}
-      #     method: approle
-      #     roleId: ${{ secrets.VAULT_ROLE_ID }}
-      #     secretId: ${{ secrets.VAULT_SECRET_ID }}        
           
-          
-      - name: Debug: Print secret
+      - name: Print secret
         run: |
           echo "Vault URL: ${{ secrets.VAULT_URL }}"
         env:
