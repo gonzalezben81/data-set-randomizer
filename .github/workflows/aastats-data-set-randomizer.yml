@@ -10,6 +10,7 @@ on:
 
 permissions:
   contents: 'write'
+  id-token: write
 
 ###Set the new values for the randomized data set
 env:
