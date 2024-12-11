@@ -40,8 +40,8 @@ jobs:
       - name: Authenticate with Vault using JWT
         uses: hashicorp/vault-action@v2
         with:
-          url: ${{ env.VAULT_ADDR }}
-          caCertificate: ${{ secrets.VAULT_CA_CERT }}
+          url: ${{ secrets.VAULT_URL }}
+          # caCertificate: ${{ secrets.VAULT_CA_CERT }}
           role: ${{ env.VAULT_ROLE }}
           method: jwt
           jwtGithubAudience: ${{ env.JWT_AUDIENCE }}
