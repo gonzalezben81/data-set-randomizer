@@ -78,7 +78,8 @@ jobs:
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
+      
+      ###Vault interaction
       - name: Import Secrets
         id: import-secrets
         uses: hashicorp/vault-action@v2
