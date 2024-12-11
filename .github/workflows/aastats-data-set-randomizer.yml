@@ -45,12 +45,12 @@ jobs:
           role: ${{ env.VAULT_ROLE }}
           method: jwt
           jwtGithubAudience: ${{ env.JWT_AUDIENCE }}
-        env:
-          VAULT_TOKEN: ${{ secrets.VAULT_TOKEN }}
+        # env:
+        #   VAULT_TOKEN: ${{ secrets.VAULT_TOKEN }}
 
       - name: Retrieve secret from Vault
         run: |
-          secret=$(vault kv get -field=value secret/gh-demo)
+          secret=$(vault kv get -field=demo_secret secret/gh-demo)
           echo "Retrieved secret: $secret"
 
       - name: Use the secret in subsequent steps
