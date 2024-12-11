@@ -26,22 +26,6 @@ jobs:
   run_analysis:
     runs-on: ubuntu-latest
     
-    ###Check out the repository
-    steps:
-      - name: Check out the repository
-        uses: actions/checkout@v4
-        
-        
-name: Vault Authentication Workflow
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  authenticate-and-retrieve-secrets:
-    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
