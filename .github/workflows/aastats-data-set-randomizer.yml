@@ -87,7 +87,6 @@ jobs:
           url: ${{ secrets.VAULT_URL }}
           role: github-actions-role
           method: jwt
-          path: gh-actions
           tlsSkipVerify: false
           secrets: |
             secret/data/gh-demo demo_secret          
