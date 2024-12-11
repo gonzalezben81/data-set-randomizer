@@ -80,6 +80,12 @@ jobs:
       #   env:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
+          
+      - name: Print GitHub JWT token
+        env:
+          ACTIONS_ID_TOKEN_REQUEST_TOKEN: ${{ secrets.ACTIONS_ID_TOKEN_REQUEST_TOKEN }}
+        run: echo "JWT Token: $ACTIONS_ID_TOKEN_REQUEST_TOKEN"
+          
       - name: Get Secrets
         id: secrets
         uses: hashicorp/vault-action@v2
